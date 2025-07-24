@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ContactForm from './components/ContactForm';
 
 import Bienvenido from './pages/Bienvenido';
 import ComoAyudar from './pages/ComoAyudar';
@@ -26,9 +27,11 @@ function App() {
             <Route path="/voluntariado" element={<Voluntariado />} />
           </Routes>
         </main>
+        <ContactForm />
         <Footer />
       </div>
     </Router>
+
   );
 }
 

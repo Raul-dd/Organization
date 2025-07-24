@@ -5,6 +5,49 @@ const Bienvenido = () => {
       <p className="mt-4 text-lg max-w-2xl mx-auto">
         Esta es la página de inicio. Aquí va el contenido principal de la organización.
       </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      <p className="mt-4 text-lg max-w-2xl mx-auto">
+        Esta es la página de inicio. Aquí va el contenido principal de la organización.
+      </p>
+      
     </section>
   );
 };
