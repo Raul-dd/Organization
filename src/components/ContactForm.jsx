@@ -1,92 +1,133 @@
-import { useState } from 'react';
+import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
+
+const inputStyle =
+  "p-2 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition duration-300 ease-in-out";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    telefono: '',
-    mensaje: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Datos del formulario:', formData);
-    // Aquí luego se conectará con Laravel
-  };
-
   return (
-    <section className="bg-blue-800 text-white py-10 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-5 gap-6">
-          {/* Iconos sociales */}
-          <div className="flex flex-col space-y-4 items-start">
-            <i className="fab fa-facebook text-2xl"></i>
-            <i className="fab fa-instagram text-2xl"></i>
-            <i className="fab fa-twitter text-2xl"></i>
-            <i className="fas fa-envelope text-2xl"></i>
+    <section className="bg-blue-800 py-10 px-6">
+      <div
+        data-aos="fade-up"
+        className="max-w-7xl mx-auto px-4 transition-all duration-500"
+        style={{ minHeight: "auto" }}
+      >
+        {/* Desktop */}
+        <div className="hidden lg:grid grid-cols-[60px_1fr] gap-6 items-start">
+          {/* Íconos laterales */}
+          <div className="flex flex-col gap-6 items-center text-white text-2xl">
+            <FaFacebookF />
+            <FaInstagram />
+            <FaTwitter />
+            <FaEnvelope />
           </div>
 
           {/* Formulario */}
-          <form className="md:col-span-4 grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
-            <input
-              name="nombre"
-              type="text"
-              placeholder="Nombre *"
-              value={formData.nombre}
-              onChange={handleChange}
-              required
-              className="p-2 rounded text-black"
-            />
-            <input
-              name="apellido"
-              type="text"
-              placeholder="Apellido(s) *"
-              value={formData.apellido}
-              onChange={handleChange}
-              required
-              className="p-2 rounded text-black"
-            />
-            <input
-              name="email"
-              type="email"
-              placeholder="Email *"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="p-2 rounded text-black"
-            />
-            <input
-              name="telefono"
-              type="text"
-              placeholder="Teléfono *"
-              value={formData.telefono}
-              onChange={handleChange}
-              required
-              className="p-2 rounded text-black"
-            />
-            <textarea
-              name="mensaje"
-              placeholder="Mensaje *"
-              value={formData.mensaje}
-              onChange={handleChange}
-              required
-              className="p-2 rounded col-span-1 md:col-span-2 text-black h-24 resize-none"
-            />
-            <button
-              type="submit"
-              className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-fit col-span-1 md:col-span-2 self-end ml-auto"
-            >
-              ENVIAR
-            </button>
-          </form>
+          <div className="w-full">
+            <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+            <form className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
+              <input
+                type="text"
+                placeholder="Nombre *"
+                className={`${inputStyle} col-span-1`}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Apellido(s) *"
+                className={`${inputStyle} col-span-1`}
+                required
+              />
+              <textarea
+                placeholder="Mensaje *"
+                rows={4}
+                className={`${inputStyle} col-span-1 lg:row-span-2 resize-none`}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email *"
+                className={`${inputStyle} col-span-1`}
+                required
+              />
+              <input
+                type="tel"
+                placeholder="Teléfono *"
+                className={`${inputStyle} col-span-1`}
+              />
+              <div className="col-span-2 text-white text-xs italic flex items-end">
+                * campos obligatorios
+              </div>
+              <div className="flex justify-end items-end">
+                <button
+                  type="submit"
+                  className="bg-[#00056E] text-white hover:bg-white hover:text-blue-900 font-bold py-2 px-6 rounded transition duration-300"
+                >
+                  ENVIAR
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <p className="text-sm mt-4 italic">* campos obligatorios</p>
+
+        {/* Mobile */}
+        <div className="lg:hidden">
+          <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+          <form className="grid grid-cols-2 gap-4 text-sm">
+            {/* Columna izquierda */}
+            <div className="flex flex-col gap-4">
+              <input
+                type="text"
+                placeholder="Nombre *"
+                className={inputStyle}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Apellido(s) *"
+                className={inputStyle}
+                required
+              />
+              <input
+                type="tel"
+                placeholder="Teléfono *"
+                className={inputStyle}
+              />
+              <input
+                type="email"
+                placeholder="Email *"
+                className={inputStyle}
+                required
+              />
+            </div>
+
+            {/* Columna derecha */}
+            <div className="flex flex-col gap-3">
+              <textarea
+                placeholder="Mensaje *"
+                rows={6}
+                className={`${inputStyle} resize-none`}
+                required
+              />
+              <div className="flex items-center justify-between gap-3 text-white text-xs italic">
+                <span>* campos obligatorios</span>
+                <button
+                  type="submit"
+                  className="bg-[#00056E] text-white hover:bg-white hover:text-blue-900 font-bold py-2 px-6 rounded transition duration-300"
+                >
+                  ENVIAR
+                </button>
+              </div>
+            </div>
+          </form>
+
+          {/* Redes sociales debajo en móvil */}
+          <div className="flex justify-end gap-6 mt-8 text-white text-2xl pr-4">
+            <FaFacebookF />
+            <FaInstagram />
+            <FaTwitter />
+            <FaEnvelope />
+          </div>
+        </div>
       </div>
     </section>
   );
