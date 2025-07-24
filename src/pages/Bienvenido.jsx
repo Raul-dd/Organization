@@ -10,11 +10,7 @@ function Bienvenido() {
 
   return (
     <>
-      {/* Sección Bienvenida */}
-      <main
-        className="flex flex-col items-center px-4 py-20 bg-gradient-to-b from-white to-blue-50"
-        style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}
-      >
+      <main className="flex flex-col items-center px-4 py-20 bg-gradient-to-b from-white to-blue-50 w-full">
         {/* Título */}
         <h1
           data-aos="fade-down"
