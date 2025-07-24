@@ -73,10 +73,10 @@ const Navbar = () => {
 
   return (
     <header className="w-full font-sans relative z-50">
-      {/* Encabezado superior con animación */}
+      {/* Encabezado superior */}
       <div
-        data-aos="slide-down"
-        className="bg-[#D9D9D9] flex items-center justify-between px-4 py-2 relative"
+        data-aos="fade-down"
+        className="bg-[#D9D9D9] flex items-center justify-between px-4 py-2 relative min-h-[80px]"
       >
         <img
           src={logo}
@@ -95,13 +95,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Navbar azul con animación y antireacomodo */}
-      <nav
-        data-aos="fade-down"
-        className="bg-[#004F84] text-white text-sm sm:text-base md:text-[16px] font-medium sticky top-0 z-50"
-      >
+      {/* Navbar fijo sin animación */}
+      <nav className="bg-[#004F84] text-white text-sm sm:text-base md:text-[16px] font-medium sticky top-0 z-50">
         <ul
           ref={navRef}
+          data-aos="fade-down"
           className="flex flex-nowrap justify-center items-center gap-x-2 px-4 h-[40px] w-full text-center"
         >
           {menuItems.map((item, index) => {
