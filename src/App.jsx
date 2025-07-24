@@ -30,7 +30,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Bienvenido />} />
-        
+            
           </Routes>
         </main>
         <ContactForm />
