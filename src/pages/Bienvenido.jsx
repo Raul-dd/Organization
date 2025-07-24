@@ -6,15 +6,6 @@ import heartImage from "../assets/corazon.png";
 function Bienvenido() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
-
-    // Establecer variable personalizada para evitar saltos por Omnibox
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-    setVh();
-    window.addEventListener('resize', setVh);
-    return () => window.removeEventListener('resize', setVh);
   }, []);
 
   return (
