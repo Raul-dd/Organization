@@ -5,7 +5,7 @@ const inputStyle =
 
 const ContactForm = () => {
   return (
-    <section className="bg-blue-800 py-10 px-6">
+    <section className="bg-blue-800 py-10 px-6" style={{ minHeight: "auto" }}>
       <div
         data-aos="fade-up"
         className="max-w-7xl mx-auto px-4 transition-all duration-500"

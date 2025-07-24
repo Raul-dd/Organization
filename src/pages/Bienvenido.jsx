@@ -1,17 +1,29 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import heartImage from "../assets/corazon.png"; // Asegúrate que este archivo exista
+import heartImage from "../assets/corazon.png";
 
 function Bienvenido() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    // Establecer variable personalizada para evitar saltos por Omnibox
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
   }, []);
 
   return (
     <>
       {/* Sección Bienvenida */}
-      <main className="flex flex-col items-center px-4 py-20 bg-gradient-to-b from-white to-blue-50 min-h-[100dvh]">
+      <main
+        className="flex flex-col items-center px-4 py-20 bg-gradient-to-b from-white to-blue-50"
+        style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}
+      >
         {/* Título */}
         <h1
           data-aos="fade-down"
