@@ -11,6 +11,7 @@ import Galeria from './pages/Galeria';
 import Proyecto from './pages/Proyecto';
 import QuienesSomos from './pages/QuienesSomos';
 import Voluntariado from './pages/Voluntariado';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   useEffect(() => {
@@ -30,7 +31,12 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Bienvenido />} />
-            
+            <Route path="/quienes-somos" element={<QuienesSomos />} />
+            <Route path="/como-ayudar" element={<ComoAyudar />} />
+            <Route path="/proyectos" element={<Proyecto />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/galeria" element={<Galeria />} />
+            <Route path="/voluntariado" element={<Voluntariado />} />
           </Routes>
         </main>
         <ContactForm />

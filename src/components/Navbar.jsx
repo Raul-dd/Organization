@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import logo from '../assets/logo.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const menuItems = [
   'BIENVENIDO',
@@ -27,14 +28,21 @@ const rutas = {
 const Navbar = () => {
   const navRef = useRef(null);
   const liRefs = useRef([]);
+  const dropdownButtonRef = useRef(null);
   const dropdownRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(menuItems.length);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     AOS.init({ duration: 800 });
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   const calcularVisibles = () => {
     const nav = navRef.current;
@@ -55,25 +63,60 @@ const Navbar = () => {
     setVisibleCount(count);
   };
 
+  const updateDropdownPosition = () => {
+    if (menuOpen && dropdownButtonRef.current) {
+      const rect = dropdownButtonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + window.scrollY,
+        left: rect.left - 250,
+      });
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      if (dropdownButtonRef.current && !dropdownButtonRef.current.contains(e.target) &&
+          dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setMenuOpen(false);
       }
     };
+    
+    const handleScroll = () => {
+      setMenuOpen(false);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   useEffect(() => {
+    const handleResize = () => {
+      calcularVisibles();
+      updateDropdownPosition();
+    };
+
     calcularVisibles();
-    window.addEventListener('resize', calcularVisibles);
-    return () => window.removeEventListener('resize', calcularVisibles);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    updateDropdownPosition();
+  }, [menuOpen]);
+
+  const handleMenuItemClick = (e, path) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    navigate(path);
+  };
+
   return (
-    <header className="w-full font-sans relative z-50">
-      {/* Encabezado superior con animación */}
+    <header className="w-full font-sans relative z-[100]">
+      {/* Encabezado superior */}
       <div
         data-aos="slide-down"
         className="bg-[#D9D9D9] flex items-center justify-between px-4 py-2 relative"
@@ -84,7 +127,6 @@ const Navbar = () => {
           className="h-16 sm:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105"
         />
 
-        {/* Título centrado */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center">
           <h1 className="text-[1.25rem] sm:text-2xl md:text-5xl font-medium text-[#004F84] leading-tight mb-1">
             AYUDAR ES AMAR AC
@@ -95,7 +137,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Navbar azul SIN sticky (para evitar reacomodo) */}
+      {/* Navbar azul */}
       <nav
         data-aos="fade-down"
         className="bg-[#004F84] text-white text-sm sm:text-base md:text-[16px] font-medium relative z-50"
@@ -126,7 +168,7 @@ const Navbar = () => {
           })}
 
           {visibleCount < menuItems.length && (
-            <li className="relative h-full flex items-center" ref={dropdownRef}>
+            <li className="relative h-full flex items-center" ref={dropdownButtonRef}>
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="p-2 hover:bg-[#003c63] rounded transition-transform duration-300 hover:scale-105"
@@ -141,29 +183,46 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
-
-              {menuOpen && (
-                <ul
-                  data-aos="fade-in"
-                  className="absolute top-[38px] right-0 bg-[#004F84] shadow-lg border border-white rounded z-50 min-w-[180px]"
-                >
-                  {menuItems.slice(visibleCount).map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="px-4 py-2 hover:bg-[#003c63] whitespace-nowrap"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      <Link to={rutas[item]} className="block w-full">
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </li>
           )}
         </ul>
       </nav>
+
+      {/* Menú desplegable usando Portal */}
+      {menuOpen && createPortal(
+        <div
+          ref={dropdownRef}
+          className="fixed bg-[#004F84] shadow-lg border border-white rounded min-w-[250px]"
+          style={{
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
+            zIndex: 99999,
+          }}
+        >
+          <ul>
+            {menuItems.slice(visibleCount).map((item, idx) => {
+              const isActive = location.pathname === rutas[item];
+              return (
+                <li
+                  key={idx}
+                  className={`px-4 py-2 hover:bg-[#003c63] whitespace-nowrap ${
+                    isActive ? 'bg-[#003c63]' : ''
+                  }`}
+                >
+                  <a
+                    href={rutas[item]}
+                    onClick={(e) => handleMenuItemClick(e, rutas[item])}
+                    className="block w-full text-white cursor-pointer"
+                  >
+                    {item}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>,
+        document.body
+      )}
     </header>
   );
 };
