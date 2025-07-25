@@ -46,13 +46,13 @@ function ComoAyudar() {
 
         <ul className="list-disc list-inside space-y-2 pl-4">
           <li>
-            <strong>1.-</strong> Económicamente.
+            <strong></strong> Económicamente.
           </li>
           <li>
-            <strong>2.-</strong> Con artículos de primera necesidad tales como alimentos no perecederos, útiles escolares y ropa en buen estado, etc.
+            <strong></strong> Con artículos de primera necesidad tales como alimentos no perecederos, útiles escolares y ropa en buen estado, etc.
           </li>
           <li>
-            <strong>3.-</strong> Únete a nosotros y participa. Ayúdanos en esta labor que será de gran satisfacción para ti. Brindar apoyo a los que lo necesitan te hará recibir el cariño de estas personas, en quienes lograrás un futuro mejor.
+            <strong></strong> Únete a nosotros y participa. Ayúdanos en esta labor que será de gran satisfacción para ti. Brindar apoyo a los que lo necesitan te hará recibir el cariño de estas personas, en quienes lograrás un futuro mejor.
           </li>
         </ul>
 

@@ -1,11 +1,19 @@
-import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { SiX } from "react-icons/si";
+import { useLocation } from "react-router-dom";
 
 const inputStyle =
   "p-2 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition duration-300 ease-in-out";
 
 const ContactForm = () => {
+  const location = useLocation();
+  const isContactoPage = location.pathname === "/contacto";
+
   return (
-    <section className="bg-blue-800 py-10 px-6" style={{ minHeight: "auto" }}>
+    <section
+      className={`${isContactoPage ? "bg-transparent" : "bg-[#004F84]"} py-10 px-6`}
+      style={{ minHeight: "auto" }}
+    >
       <div
         data-aos="fade-up"
         className="max-w-7xl mx-auto px-4 transition-all duration-500"
@@ -15,15 +23,37 @@ const ContactForm = () => {
         <div className="hidden lg:grid grid-cols-[60px_1fr] gap-6 items-start">
           {/* Íconos laterales */}
           <div className="flex flex-col gap-6 items-center text-white text-2xl">
-            <FaFacebookF />
-            <FaInstagram />
-            <FaTwitter />
-            <FaEnvelope />
+            <a
+              href="https://www.facebook.com/ayudaresamarac"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://www.instagram.com/ayudaresamarac"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://x.com/AyudaresAmarAC"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiX />
+            </a>
+            <a href="mailto:zdiaz7521@gmail.com">
+              <FaEnvelope />
+            </a>
           </div>
 
           {/* Formulario */}
           <div className="w-full">
-            <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+            <h2 className="text-white font-bold mb-4 text-xl">
+              Esperamos tener noticias suyas.
+            </h2>
             <form className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
               <input
                 type="text"
@@ -71,7 +101,9 @@ const ContactForm = () => {
 
         {/* Mobile */}
         <div className="lg:hidden">
-          <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+          <h2 className="text-white font-bold mb-4 text-xl">
+            Esperamos tener noticias suyas.
+          </h2>
           <form className="grid grid-cols-2 gap-4 text-sm">
             {/* Columna izquierda */}
             <div className="flex flex-col gap-4">
@@ -122,10 +154,30 @@ const ContactForm = () => {
 
           {/* Redes sociales debajo en móvil */}
           <div className="flex justify-end gap-6 mt-8 text-white text-2xl pr-4">
-            <FaFacebookF />
-            <FaInstagram />
-            <FaTwitter />
-            <FaEnvelope />
+            <a
+              href="https://www.facebook.com/ayudaresamarac"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://www.instagram.com/ayudaresamarac"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://x.com/AyudaresAmarAC"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiX />
+            </a>
+            <a href="mailto:zdiaz7521@gmail.com">
+              <FaEnvelope />
+            </a>
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ function Contacto() {
         data-aos="fade-up"
         className="text-center max-w-2xl mx-auto text-lg sm:text-xl mb-12 opacity-90"
       >
-        Estamos aquí para ayudarte. Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
+        Estamos al pendiente. Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
       </p>
 
       {/* Formulario */}
