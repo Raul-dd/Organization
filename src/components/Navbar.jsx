@@ -127,7 +127,8 @@ const Navbar = () => {
           className="h-16 sm:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105"
         />
 
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pl-3 sm:pl-0">
+
           <h1 className="text-[1.25rem] sm:text-2xl md:text-5xl font-medium text-[#004F84] leading-tight mb-1">
             AYUDAR ES AMAR AC
           </h1>
