@@ -124,7 +124,7 @@ const Navbar = () => {
         <img
           src={logo}
           alt="logo"
-          className="h-16 sm:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105"
+          className="h-16 sm:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105 -ml-3"
         />
 
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center pl-5 sm:pl-0">
