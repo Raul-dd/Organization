@@ -6,12 +6,28 @@ import { FaArrowDown } from "react-icons/fa";
 function ComoAyudar() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
+    
+    // Función para establecer el alto del viewport
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // Establecer el valor inicial
+    setVh();
+
+    // Actualizar cuando cambie el tamaño de la ventana
+    window.addEventListener('resize', setVh);
+    
+    return () => {
+      window.removeEventListener('resize', setVh);
+    };
   }, []);
 
   return (
     <main
       className="flex flex-col items-center px-4 py-16 bg-gradient-to-b from-blue-50 to-white"
-      style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }} // 👈 Evita reacomodo
+      style={{ minHeight: 'calc(100 * var(--vh, 1vh))' }}
     >
       {/* Título */}
       <h1
