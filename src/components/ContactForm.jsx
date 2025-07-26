@@ -82,6 +82,7 @@ const ContactForm = () => {
 
   return (
     <section
+      id="contact-form"
       className={`${isContactoPage ? "bg-transparent" : "bg-[#004F84]"} py-10 px-6`}
       style={{ minHeight: "auto" }}
     >
