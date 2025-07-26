@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 
 const inputStyle =
@@ -106,6 +106,14 @@ const ContactForm = () => {
             </a>
             <a href="mailto:zdiaz7521@gmail.com">
               <FaEnvelope />
+            </a>
+            {/* Ícono de WhatsApp dentro del formulario */}
+            <a
+              href="https://wa.me/523349852528?text=Hola,%20me%20gustaría%20más%20información."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp />
             </a>
           </div>
 
@@ -253,6 +261,13 @@ const ContactForm = () => {
             </a>
             <a href="mailto:zdiaz7521@gmail.com">
               <FaEnvelope />
+            </a>
+            <a
+              href="https://wa.me/523349852528?text=Hola,%20me%20gustaría%20más%20información."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp />
             </a>
           </div>
         </div>
