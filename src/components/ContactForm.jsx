@@ -104,7 +104,7 @@ const ContactForm = () => {
             <a href="https://x.com/AyudaresAmarAC" target="_blank" rel="noopener noreferrer">
               <SiX />
             </a>
-            <a href="mailto:zdiaz7521@gmail.com">
+            <a href="mailto:agutierrez@ayudaresamar.org">
               <FaEnvelope />
             </a>
             {/* Ícono de WhatsApp dentro del formulario */}
@@ -259,11 +259,11 @@ const ContactForm = () => {
             <a href="https://x.com/AyudaresAmarAC" target="_blank" rel="noopener noreferrer">
               <SiX />
             </a>
-            <a href="mailto:zdiaz7521@gmail.com">
+            <a href="mailto:agutierrez@ayudaresamar.org">
               <FaEnvelope />
             </a>
             <a
-              href="https://wa.me/523349852528?text=Hola,%20me%20gustaría%20más%20información."
+              href="https://wa.me/523349852528?text=Hola,%20AYUDAR%20ES%20AMAR%20AC%20quiero%20más%20información%20sobre:"
               target="_blank"
               rel="noopener noreferrer"
             >
