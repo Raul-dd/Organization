@@ -6,3 +6,9 @@ html, body {
   height: auto;
   min-height: 100%;
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

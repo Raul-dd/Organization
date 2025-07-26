@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { FaFacebookF, FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { SiX } from "react-icons/si";
+import { createPortal } from "react-dom";
 
 const inputStyle =
   "p-2 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition duration-300 ease-in-out";
@@ -17,6 +18,10 @@ const ContactForm = () => {
     email: "",
     mensaje: "",
   });
+
+  const [cargando, setCargando] = useState(false);
+  const [mensajeFeedback, setMensajeFeedback] = useState(null);
+  const [tipoFeedback, setTipoFeedback] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,18 +41,22 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCargando(true); // inicia carga
+    setMensajeFeedback(null);
 
-    // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      alert("Por favor, introduce un correo electrónico válido.");
+      setTipoFeedback("error");
+      setMensajeFeedback("Por favor, introduce un correo electrónico válido.");
+      setCargando(false);
       return;
     }
 
-    // Validar teléfono: exactamente 10 dígitos
     const telefonoRegex = /^[0-9]{10}$/;
     if (!telefonoRegex.test(formData.telefono)) {
-      alert("Por favor, introduce un número de teléfono válido de 10 dígitos.");
+      setTipoFeedback("error");
+      setMensajeFeedback("Por favor, introduce un número de teléfono válido de 10 dígitos.");
+      setCargando(false);
       return;
     }
 
@@ -61,7 +70,8 @@ const ContactForm = () => {
       });
 
       if (res.ok) {
-        alert("Mensaje enviado correctamente.");
+        setTipoFeedback("success");
+        setMensajeFeedback("Mensaje enviado correctamente.");
         setFormData({
           nombre: "",
           apellido: "",
@@ -70,15 +80,18 @@ const ContactForm = () => {
           mensaje: "",
         });
       } else {
-        alert("Error al enviar el formulario.");
+        setTipoFeedback("error");
+        setMensajeFeedback("Error al enviar el formulario.");
       }
     } catch (error) {
-      alert("Error de conexión con el servidor.");
+      setTipoFeedback("error");
+      setMensajeFeedback("Error de conexión con el servidor.");
     }
+
+    setCargando(false);
+    // Ocultar el mensaje después de 4 segundos
+    setTimeout(() => setMensajeFeedback(null), 2000);
   };
-
-
-
 
   return (
     <section
@@ -91,6 +104,47 @@ const ContactForm = () => {
         className="max-w-7xl mx-auto px-4 transition-all duration-500"
         style={{ minHeight: "auto" }}
       >
+        {/* Toast centrado */}
+        {(mensajeFeedback || cargando) &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center"
+            style={{ pointerEvents: "none" }}
+          >
+            <div
+              className="px-6 py-8 rounded-lg shadow-lg text-white text-center min-w-[260px] max-w-[90%] text-sm font-medium flex flex-col items-center justify-center backdrop-blur-sm"
+              style={{
+                backgroundColor:
+                  cargando || tipoFeedback === "success"
+                    ? "#1e40af"
+                    : tipoFeedback === "error"
+                    ? "#dc2626"
+                    : "#1e40af",
+                opacity: 0.85,
+                pointerEvents: "auto",
+              }}
+            >
+              {cargando ? (
+                <>
+                  <div
+                    className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"
+                    style={{ animation: "spin 1s linear infinite" }}
+                  ></div>
+                  <p className="mt-2">Enviando mensaje...</p>
+                </>
+              ) : (
+                <>
+                  <span className="text-3xl">
+                    {tipoFeedback === "success" ? "✅" : "❌"}
+                  </span>
+                  <p>{mensajeFeedback}</p>
+                </>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
+
         {/* Desktop */}
         <div className="hidden lg:grid grid-cols-[60px_1fr] gap-6 items-start">
           {/* Íconos laterales */}
@@ -120,6 +174,7 @@ const ContactForm = () => {
           {/* Formulario */}
           <div className="w-full">
             <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+
             <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
               <input
                 name="nombre"
@@ -185,6 +240,7 @@ const ContactForm = () => {
         {/* Mobile */}
         <div className="lg:hidden">
           <h2 className="text-white font-bold mb-4 text-xl">Esperamos tener noticias suyas.</h2>
+
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 text-sm">
             {/* Columna izquierda */}
             <div className="flex flex-col gap-4">
