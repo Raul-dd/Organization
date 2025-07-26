@@ -27,7 +27,7 @@ function Voluntariado() {
   return (
     <main
       className="bg-gradient-to-b from-white to-blue-50 px-6 py-20 flex flex-col items-center justify-center text-center"
-      style={{ minHeight: 'calc(100 * var(--vh, 1vh))' }}
+      style={{ height: 'calc(100 * var(--vh, 1vh))' }}
     >
       {/* Título */}
       <h1

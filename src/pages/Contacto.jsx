@@ -27,7 +27,7 @@ function Contacto() {
   return (
     <main
       className="w-full bg-gradient-to-b from-[#004F84] to-[#000e33] text-white px-4 py-16"
-      style={{ minHeight: 'calc(100 * var(--vh, 1vh))' }}
+      style={{ height: 'calc(100 * var(--vh, 1vh))' }}
     >
       {/* Título */}
       <h1

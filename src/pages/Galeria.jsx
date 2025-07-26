@@ -25,7 +25,7 @@ function Galeria() {
   return (
     <main
       className="bg-gradient-to-b from-white to-blue-50 px-4 py-16"
-      style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
+      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
     >
       {/* Título */}
       <h1

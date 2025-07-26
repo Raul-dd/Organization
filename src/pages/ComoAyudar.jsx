@@ -27,7 +27,7 @@ function ComoAyudar() {
   return (
     <main
       className="flex flex-col items-center px-4 py-16 bg-gradient-to-b from-blue-50 to-white"
-      style={{ minHeight: 'calc(100 * var(--vh, 1vh))' }}
+      style={{ height: 'calc(100 * var(--vh, 1vh))' }}
     >
       {/* Título */}
       <h1
